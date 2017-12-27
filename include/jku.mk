@@ -1,5 +1,5 @@
-_META := ~/.pandoc/meta
-_INC := ~/.pandoc/include
+_META := $(HOME)/.pandoc/meta
+_INC := $(HOME)/.pandoc/include
 
 pandoc_pdf = pandoc \
 	--write=latex \
