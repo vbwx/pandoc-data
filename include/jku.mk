@@ -1,16 +1,19 @@
-_META := $(HOME)/.pandoc/meta
-_INC := $(HOME)/.pandoc/include
+_meta := $(HOME)/.pandoc/meta
+_inc := $(HOME)/.pandoc/include
 
 CITEPROC := --filter=pandoc-citeproc
-APA := $(CITEPROC) $(_META)/apa.yaml
+APA := $(CITEPROC) $(_meta)/apa.yaml
+RESPATH := include:.
+ENGINE := xelatex
+TPL := jku
 
 pandoc_pdf = pandoc \
 	--read=markdown$(EXT) \
 	--write=latex \
-	--template=jku.tex \
-	--pdf-engine=xelatex \
-	--resource-path=$(_INC):include:. \
+	--template=$(TPL).tex \
+	--pdf-engine=$(ENGINE) \
+	--resource-path=$(_inc):$(RESPATH) \
 	--output=$@ \
 	$(OPT) $(OPT_PDF) \
-	$(_META)/jku.yaml $+ \
+	$(_meta)/$(TPL).yaml $+ \
 	$(APPEND) $(APPEND_PDF)
