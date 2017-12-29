@@ -6,9 +6,10 @@ APA := $(CITEPROC) $(_meta)/apa.yaml
 RESPATH := include:.
 ENGINE := xelatex
 TPL := jku
+READ := markdown
 
 pandoc_pdf = pandoc \
-	--read=markdown$(EXT) \
+	--read=$(READ) \
 	--write=latex \
 	--template=$(TPL).tex \
 	--pdf-engine=$(ENGINE) \
