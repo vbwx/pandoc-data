@@ -18,3 +18,6 @@ pandoc_pdf = pandoc \
 	$(OPT) $(OPT_PDF) \
 	$(_meta)/$(TPL).yaml $+ \
 	$(APPEND) $(APPEND_PDF)
+
+view = $(BROWSER) $@
+edit = $(VISUAL) $@
