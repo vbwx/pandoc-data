@@ -1,31 +1,31 @@
 SHELL := /bin/bash
 
-META := $(HOME)/.pandoc/meta
-INC := $(HOME)/.pandoc/include
+_META := $(HOME)/.pandoc/meta
+_INC := $(HOME)/.pandoc/include
 
-RESPATH := include:.
+RESPATH = include:$(dir $@)
 ENGINE := xelatex
-TPL := jku
-FMT_TEX := latex
-FMT := markdown
+TEMPLATE := jku
+WRITE_TEX := latex
+READ := markdown
 
 PDF = pandoc \
-	--read=$(FMT) \
-	--write=$(FMT_TEX) \
-	--template=$(TPL).tex \
+	--read=$(READ) \
+	--write=$(WRITE_TEX) \
+	--template=$(TEMPLATE).tex \
 	--pdf-engine=$(ENGINE) \
-	--resource-path=$(INC):$(RESPATH) \
+	--resource-path=$(_INC):$(RESPATH) \
 	--output=$@ \
 	$(OPT) $(OPT_PDF) \
-	$(META)/$(TPL).yaml
+	$(_META)/$(TEMPLATE).yaml
 
 TEX = pandoc \
-	--read=$(FMT) \
-	--write=$(FMT_TEX) \
-	--resource-path=$(INC):$(RESPATH) \
+	--read=$(READ) \
+	--write=$(WRITE_TEX) \
+	--resource-path=$(_INC):$(RESPATH) \
 	--output=$@ \
 	$(OPT) $(OPT_TEX) \
-	$(META)/$(TPL).yaml
+	$(_META)/$(TEMPLATE).yaml
 
 VIEW = $(BROWSER) $@
 EDIT = $(VISUAL) $@
