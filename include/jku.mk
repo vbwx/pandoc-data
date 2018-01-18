@@ -3,7 +3,8 @@ SHELL := /bin/bash
 _META := $(HOME)/.pandoc/meta
 _INC := $(HOME)/.pandoc/include
 
-RESPATH = include:$(dir $@)
+INC = $(dir $@)include
+RESPATH = $(dir $@):$(INC):$(_INC)
 ENGINE := xelatex
 TEMPLATE := jku
 WRITE_TEX := latex
@@ -14,7 +15,7 @@ PDF = pandoc \
 	--write=$(WRITE_TEX) \
 	--template=$(TEMPLATE).tex \
 	--pdf-engine=$(ENGINE) \
-	--resource-path=$(_INC):$(RESPATH) \
+	--resource-path=$(RESPATH) \
 	--output=$@ \
 	$(OPT) $(OPT_PDF) \
 	$(_META)/$(TEMPLATE).yaml
@@ -22,7 +23,7 @@ PDF = pandoc \
 TEX = pandoc \
 	--read=$(READ) \
 	--write=$(WRITE_TEX) \
-	--resource-path=$(_INC):$(RESPATH) \
+	--resource-path=$(RESPATH) \
 	--output=$@ \
 	$(OPT) $(OPT_TEX) \
 	$(_META)/$(TEMPLATE).yaml
