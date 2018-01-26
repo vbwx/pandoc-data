@@ -7,12 +7,12 @@ INC = $(dir $@)include
 RESPATH = $(dir $@):$(INC):$(_INC)
 ENGINE := xelatex
 TEMPLATE := jku
-WRITE_TEX := latex
-READ := markdown
+TO_TEX := latex
+FROM := markdown
 
 PDF = pandoc \
-	--read=$(READ) \
-	--write=$(WRITE_TEX) \
+	--from=$(FROM) \
+	--to=$(TO_TEX) \
 	--template=$(TEMPLATE).tex \
 	--pdf-engine=$(ENGINE) \
 	--resource-path=$(RESPATH) \
@@ -21,12 +21,13 @@ PDF = pandoc \
 	$(_META)/$(TEMPLATE).yaml
 
 TEX = pandoc \
-	--read=$(READ) \
-	--write=$(WRITE_TEX) \
+	--from=$(FROM) \
+	--to=$(TO_TEX) \
 	--resource-path=$(RESPATH) \
 	--output=$@ \
 	$(OPT) $(OPT_TEX) \
 	$(_META)/$(TEMPLATE).yaml
 
-VIEW = $(BROWSER) $@
+OPEN = $(BROWSER) $@
+VIEW = open -a Preview $@
 EDIT = $(VISUAL) $@
