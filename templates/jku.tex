@@ -233,6 +233,8 @@ $if(headcenter)$
 $endif$
 $if(headright)$
 \fancyhead[$if(headright-opt)$$headright-opt$$else$R$endif$]{$headright$}
+$else$
+\fancyhead[$if(headright-opt)$$headright-opt$$else$R$endif$]{$if(author)$00856891$else$Bernhard Waldbrunner (00856891)$endif$}
 $endif$
 \fancyfoot[$if(footleft-opt)$$footleft-opt$$else$L$endif$]{JKU$if(footleft)$/$footleft$$endif$}
 \fancyfoot[$if(footright-opt)$$footright-opt$$else$R$endif$]{$if(footright)$$footright$$else$\today$endif$}
