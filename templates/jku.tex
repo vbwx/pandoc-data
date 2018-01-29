@@ -150,7 +150,9 @@ $if(strikeout)$
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 $endif$
 $if(indent)$
+$if(indentfirst)$
 \usepackage{indentfirst}
+$endif$
 $else$
 \IfFileExists{parskip.sty}{%
 \usepackage{parskip}
