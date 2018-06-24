@@ -166,9 +166,9 @@ $endif$
 \def\fps@figure{$figureplacement$}
 \makeatother
 
-$if(apa)$
+$if(hanging)$
 \usepackage{hanging}
-\newcommand{\APASTYLE}{
+\newcommand{\HangingIndent}{
 \newlength{\hanglength}
 \setlength{\hanglength}{2\parindent}
 \setstretch{1}
@@ -177,6 +177,11 @@ $if(apa)$
 \begin{hangparas}{\hanglength}{1}
 }
 $endif$
+\newcommand{\NoIndent}{
+\setstretch{1}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
@@ -309,7 +314,7 @@ $endif$
 
 $body$
 
-$if(apa)$
+$if(hanging)$
 \end{hangparas}
 $endif$
 
