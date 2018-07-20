@@ -29,3 +29,4 @@ TEX = pandoc \
 OPEN = $(BROWSER) $@
 VIEW = open -a Preview $@
 EDIT = $(VISUAL) $@
+MAKE = @make $@/$@.pdf
