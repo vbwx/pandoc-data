@@ -2,6 +2,7 @@ SHELL := /bin/bash
 
 _META := $(HOME)/.pandoc/meta
 _INC := $(HOME)/.pandoc/include
+_DIRS := $(subst /,,$(dir $(wildcard */*.md)))
 
 META = $(_META)/$(TEMPLATE).yaml
 INC = $(dir $@)include
@@ -29,4 +30,10 @@ TEX = pandoc \
 OPEN = $(BROWSER) $@
 VIEW = open -a Preview $@
 EDIT = $(VISUAL) $@
-MAKE = @make $@/$@.pdf
+
+.PHONY: all $(_DIRS)
+
+all: $(_DIRS)
+
+$(_DIRS):
+	@make $@/$@.$(DEFAULT)
