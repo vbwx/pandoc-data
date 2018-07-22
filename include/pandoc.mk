@@ -8,9 +8,6 @@ _FILES := $(addsuffix .$(DEFAULT),$(basename $(wildcard *$(SUFFIX))))
 META = $(_META)/$(TEMPLATE).yaml
 INC = $(dir $@)include
 RESPATH = $(dir $@):$(INC):$(_INC)
-ENGINE := xelatex
-TO_TEX := latex
-FROM := markdown
 
 PDF = pandoc \
 	--from=$(FROM) \
