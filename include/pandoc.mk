@@ -3,6 +3,7 @@ SHELL := /bin/bash
 _META := $(HOME)/.pandoc/meta
 _INC := $(HOME)/.pandoc/include
 _DIRS := $(subst /,,$(sort $(dir $(wildcard */*$(SUFFIX)))))
+_FILES := $(addsuffix .$(DEFAULT),$(basename $(wildcard *$(SUFFIX))))
 
 META = $(_META)/$(TEMPLATE).yaml
 INC = $(dir $@)include
@@ -33,7 +34,7 @@ EDIT = $(VISUAL) $@
 
 .PHONY: all $(_DIRS)
 
-all: $(_DIRS)
+all: $(_DIRS) $(_FILES)
 
 $(_DIRS):
 	@make $@/$@.$(DEFAULT)
