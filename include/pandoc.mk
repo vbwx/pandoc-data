@@ -2,7 +2,7 @@ SHELL := /bin/bash
 
 _META := $(HOME)/.pandoc/meta
 _INC := $(HOME)/.pandoc/include
-_DIRS := $(subst /,,$(sort $(dir $(wildcard */*.$(EXT_FROM) */*.$(EXT_TO)))))
+_DIRS := $(subst /,,$(sort $(dir $(wildcard */*.$(EXT_FROM)))))
 _FILES := $(addsuffix .$(EXT_TO),$(sort $(basename $(wildcard *.$(EXT_FROM) *.$(EXT_TO)))))
 
 META = $(_META)/$(TEMPLATE).yaml
