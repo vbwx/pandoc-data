@@ -12,17 +12,19 @@ RESPATH = $(dir $@):$(INC):$(_INC)
 PDF = pandoc \
 	--from=$(FROM) \
 	--to=$(TO_TEX) \
+	--output=$@ \
+	--filter=$(FILTER_TEX) \
 	--template=$(TEMPLATE).tex \
 	--pdf-engine=$(ENGINE) \
 	--resource-path=$(RESPATH) \
-	--output=$@ \
 	$(OPT) $(OPT_PDF) $(META)
 
 TEX = pandoc \
 	--from=$(FROM) \
 	--to=$(TO_TEX) \
-	--resource-path=$(RESPATH) \
 	--output=$@ \
+	--filter=$(FILTER_TEX) \
+	--resource-path=$(RESPATH) \
 	$(OPT) $(OPT_TEX) $(META)
 
 OPEN = $(BROWSER) $@
