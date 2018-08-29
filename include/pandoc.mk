@@ -5,16 +5,15 @@ _INC := $(HOME)/.pandoc/include
 _DIRS := $(subst /,,$(sort $(dir $(wildcard */*.$(EXT_FROM)))))
 _FILES := $(addsuffix .$(EXT_TO),$(sort $(basename $(wildcard *.$(EXT_FROM) *.$(EXT_TO)))))
 
-META = $(_META)/$(TEMPLATE).yaml
 INC = $(dir $@)include
 RESPATH = $(dir $@):$(INC):$(_INC)
 
 PDF = pandoc \
 	--from=$(FROM) \
-	--to=$(TO_TEX) \
+	--to=$(TO_PDF) \
 	--output=$@ \
-	--filter=$(FILTER_TEX) \
-	--template=$(TEMPLATE).tex \
+	$(addprefix --filter=,$(FILTERS)) \
+	--template=$(TEMPLATE) \
 	--pdf-engine=$(ENGINE) \
 	--resource-path=$(RESPATH) \
 	$(OPT) $(OPT_PDF) $(META)
@@ -23,7 +22,7 @@ TEX = pandoc \
 	--from=$(FROM) \
 	--to=$(TO_TEX) \
 	--output=$@ \
-	--filter=$(FILTER_TEX) \
+	$(addprefix --filter=,$(FILTERS)) \
 	--resource-path=$(RESPATH) \
 	$(OPT) $(OPT_TEX) $(META)
 

@@ -1,9 +1,11 @@
 FROM := markdown
 TO_TEX := latex
+TO_PDF := latex
 EXT_FROM := md
 EXT_TO := pdf
-FILTER_TEX := asciimath/asciimathfilter.js
-TEMPLATE := jku
+FILTERS := asciimath/asciimathfilter.js
 ENGINE := xelatex
+TEMPLATE := jku.tex
+META = $(_META)/jku.yaml
 
 include pandoc.mk
